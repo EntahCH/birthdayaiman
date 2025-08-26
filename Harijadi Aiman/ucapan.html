@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ucapan</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #8f4bd8, #3f7de9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden; /* supaya belon tak overflow */
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0px 8px 25px rgba(0,0,0,0.2);
+      max-width: 400px;
+      text-align: center;
+      animation: fadeIn 1s ease-in-out;
+      z-index: 10;
+      position: relative;
+    }
+
+    .card h1 {
+      font-size: 28px;
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    .card p {
+      font-size: 18px;
+      color: #555;
+      margin-bottom: 25px;
+    }
+
+    button {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      border: none;
+      padding: 12px 20px;
+      border-radius: 10px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* balloon style */
+    .balloon {
+      position: absolute;
+      bottom: -150px;
+      width: 60px;
+      height: 80px;
+      border-radius: 50%;
+      animation: floatUp linear infinite;
+    }
+
+    .balloon::after {
+      content: "";
+      position: absolute;
+      bottom: -25px;
+      left: 50%;
+      width: 2px;
+      height: 25px;
+      background: #555;
+      transform: translateX(-50%);
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-110vh) rotate(10deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Sanah helwah, Aiman 🎉</h1>
+    <p>Semoga dipanjangkan umur, sehat selaluu 💕 Semoga harimu indah & penuh semangat! ✨</p>
+    <button onclick="alert('Terima kasih! 😊')">Okay</button>
+  </div>
+
+  <script>
+    // generate balloons
+    function createBalloon() {
+      const balloon = document.createElement("div");
+      balloon.classList.add("balloon");
+
+      // random color
+      const colors = ["#ff4d4d","#4da6ff","#4dff88","#ffd24d","#ff66cc"];
+      balloon.style.background = colors[Math.floor(Math.random()*colors.length)];
+
+      // random position & size
+      balloon.style.left = Math.random() * 100 + "vw";
+      balloon.style.width = 40 + Math.random()*40 + "px";
+      balloon.style.height = 60 + Math.random()*40 + "px";
+
+      // random duration
+      balloon.style.animationDuration = (6 + Math.random()*6) + "s";
+
+      document.body.appendChild(balloon);
+
+      // remove after animation
+      setTimeout(() => {
+        balloon.remove();
+      }, 12000);
+    }
+
+    // spawn balloons every 800ms
+    setInterval(createBalloon, 800);
+  </script>
+</body>
+</html>
+
